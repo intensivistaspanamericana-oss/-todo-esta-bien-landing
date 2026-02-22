@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TODO ESTÁ BIEN — Bienestar Mental para Instituciones de Salud</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --night:    #0B1520;
+      --midnight: #1A2B3C;
+      --ocean:    #1a3d4f;
+      --teal:     #0d6e6e;
+      --mint:     #4db6ac;
+      --mint-lt:  #E0F2F1;
+      --coral:    #FF6B6B;
+      --gold:     #F5C842;
+      --cream:    #faf8f3;
+      --white:    #ffffff;
+      --grey:     #8fa4b5;
+      --border:   rgba(77,182,172,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--midnight);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 18px 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(11,21,32,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(77,182,172,0.15);
+    }
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px; letter-spacing: 3px;
+      color: var(--mint); text-transform: uppercase;
+    }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      font-size: 14px; color: rgba(255,255,255,0.7);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--mint); }
+    .nav-cta {
+      background: var(--coral); color: white !important;
+      padding: 10px 24px; border-radius: 100px;
+      font-weight: 600; font-size: 14px !important;
+      transition: all 0.2s !important;
+    }
+    .nav-cta:hover { background: #ff8e8e !important; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--night);
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      padding: 120px 5% 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(77,182,172,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(77,182,172,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(13,110,110,0.25) 0%, transparent 65%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .hero-glow-2 {
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,107,107,0.12) 0%, transparent 65%);
+      top: 20%; right: 10%;
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(77,182,172,0.1);
+      border: 1px solid rgba(77,182,172,0.3);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; letter-spacing: 2px;
+      color: var(--mint); text-transform: uppercase;
+      margin-bottom: 32px;
+      animation: fadeDown 0.8s ease both;
+    }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--mint); animation: blink 2s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 7vw, 88px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 28px;
+      animation: fadeDown 0.8s 0.1s ease both;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--mint);
+    }
+    .hero h1 .accent { color: var(--coral); }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      max-width: 680px;
+      margin: 0 auto 48px;
+      animation: fadeDown 0.8s 0.2s ease both;
+    }
+
+    .hero-btns {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+      animation: fadeDown 0.8s 0.3s ease both;
+    }
+    .btn-primary {
+      background: var(--coral);
+      color: white; border: none;
+      padding: 18px 40px; border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px; font-weight: 700;
+      cursor: pointer; transition: all 0.25s;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+    }
+    .btn-primary:hover { background: #ff8e8e; transform: translateY(-3px); box-shadow: 0 20px 40px rgba(255,107,107,0.35); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.07);
+      color: white; border: 1.5px solid rgba(255,255,255,0.2);
+      padding: 18px 40px; border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px; font-weight: 600;
+      cursor: pointer; transition: all 0.25s;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+    }
+    .btn-secondary:hover { border-color: var(--mint); color: var(--mint); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex; gap: 48px; justify-content: center;
+      margin-top: 72px; flex-wrap: wrap;
+      animation: fadeDown 0.8s 0.4s ease both;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px; font-weight: 700; color: var(--white);
+      line-height: 1;
+    }
+    .hero-stat-val span { color: var(--coral); }
+    .hero-stat-lbl { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 6px; }
+
+    @keyframes fadeDown { from{opacity:0;transform:translateY(-16px);} to{opacity:1;transform:translateY(0);} }
+
+    /* ── PROBLEMA ── */
+    .problem {
+      background: var(--white);
+      padding: 100px 5%;
+    }
+    .section-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--mint);
+      margin-bottom: 16px; display: block;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700; line-height: 1.2;
+      color: var(--midnight); margin-bottom: 20px;
+    }
+    .section-sub {
+      font-size: 18px; color: var(--grey);
+      line-height: 1.7; max-width: 600px;
+    }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 60px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.1);
+    }
+    .problem-item {
+      padding: 40px;
+      border-bottom: 1px solid #f0f0f0;
+      border-right: 1px solid #f0f0f0;
+      transition: background 0.3s;
+    }
+    .problem-item:hover { background: #fafffe; }
+    .problem-item:nth-child(2n) { border-right: none; }
+    .problem-item:nth-child(n+3) { border-bottom: none; }
+    .prob-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; color: var(--coral);
+      letter-spacing: 2px; margin-bottom: 12px;
+    }
+    .prob-stat {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px; font-weight: 700;
+      color: var(--midnight); line-height: 1;
+      margin-bottom: 8px;
+    }
+    .prob-stat span { color: var(--coral); }
+    .prob-desc { font-size: 15px; color: var(--grey); line-height: 1.6; }
+
+    /* ── SOLUCIÓN ── */
+    .solution {
+      background: var(--night);
+      padding: 100px 5%;
+      position: relative; overflow: hidden;
+    }
+    .solution::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(13,110,110,0.2) 0%, transparent 60%);
+    }
+    .solution-inner { position: relative; z-index: 1; }
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      margin-top: 60px;
+    }
+    .sol-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(77,182,172,0.15);
+      border-radius: 24px;
+      padding: 36px 28px;
+      transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .sol-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--mint), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .sol-card:hover { background: rgba(255,255,255,0.07); border-color: var(--mint); transform: translateY(-4px); }
+    .sol-card:hover::before { opacity: 1; }
+    .sol-icon {
+      font-size: 36px; margin-bottom: 20px;
+      display: block;
+    }
+    .sol-title {
+      font-size: 18px; font-weight: 700;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .sol-desc { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+    /* ── DASHBOARD PREVIEW ── */
+    .dashboard-section {
+      background: var(--cream);
+      padding: 100px 5%;
+    }
+    .dash-preview {
+      background: var(--midnight);
+      border-radius: 28px;
+      padding: 32px;
+      margin-top: 60px;
+      box-shadow: 0 40px 80px rgba(26,43,60,0.25);
+      position: relative; overflow: hidden;
+    }
+    .dash-preview::before {
+      content: 'PANEL RRHH — VISTA GERENCIAL';
+      position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+      font-family: 'Space Mono', monospace;
+      font-size: 10px; letter-spacing: 2px;
+      color: rgba(77,182,172,0.6);
+    }
+    .dash-topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 28px; margin-top: 16px;
+    }
+    .dash-title { font-size: 18px; font-weight: 700; color: white; }
+    .dash-subtitle { font-size: 12px; color: var(--grey); margin-top: 2px; }
+    .dash-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; color: var(--mint);
+      background: rgba(77,182,172,0.1);
+      padding: 6px 14px; border-radius: 8px;
+    }
+    .dash-kpis {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 16px; margin-bottom: 24px;
+    }
+    .kpi-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 20px;
+    }
+    .kpi-label { font-size: 11px; color: var(--grey); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+    .kpi-val {
+      font-family: 'Space Mono', monospace;
+      font-size: 28px; font-weight: 700; color: white; line-height: 1;
+    }
+    .kpi-change { font-size: 12px; margin-top: 6px; }
+    .kpi-up { color: #4db6ac; }
+    .kpi-down { color: var(--coral); }
+    .dash-charts {
+      display: grid; grid-template-columns: 1.5fr 1fr;
+      gap: 16px;
+    }
+    .chart-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px; padding: 20px;
+    }
+    .chart-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 16px; }
+    .bar-chart { display: flex; align-items: flex-end; gap: 10px; height: 100px; }
+    .bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .bar {
+      width: 100%; border-radius: 6px 6px 0 0;
+      transition: all 0.5s ease;
+    }
+    .bar-lbl { font-size: 10px; color: var(--grey); }
+    .risk-list { display: flex; flex-direction: column; gap: 10px; }
+    .risk-item {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 10px; padding: 10px 14px;
+    }
+    .risk-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .risk-name { font-size: 13px; color: rgba(255,255,255,0.8); flex: 1; }
+    .risk-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px; padding: 3px 10px; border-radius: 6px;
+    }
+    .risk-alto { background: rgba(255,107,107,0.2); color: #FF6B6B; }
+    .risk-medio { background: rgba(245,200,66,0.2); color: #F5C842; }
+    .risk-bajo { background: rgba(77,182,172,0.2); color: #4db6ac; }
+
+    /* ── ALERT SECTION ── */
+    .alerts-section {
+      background: linear-gradient(135deg, #0B1520 0%, #0d3b4f 100%);
+      padding: 100px 5%;
+    }
+    .alerts-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: center;
+      margin-top: 60px;
+    }
+    .alert-list { display: flex; flex-direction: column; gap: 16px; }
+    .alert-card {
+      background: rgba(255,255,255,0.05);
+      border-left: 3px solid;
+      border-radius: 0 16px 16px 0;
+      padding: 20px 24px;
+      display: flex; align-items: flex-start; gap: 16px;
+      transition: all 0.3s;
+    }
+    .alert-card:hover { background: rgba(255,255,255,0.09); transform: translateX(4px); }
+    .alert-card.rojo { border-color: var(--coral); }
+    .alert-card.amarillo { border-color: var(--gold); }
+    .alert-card.verde { border-color: var(--mint); }
+    .alert-icon { font-size: 24px; flex-shrink: 0; }
+    .alert-title { font-size: 15px; font-weight: 700; color: white; margin-bottom: 4px; }
+    .alert-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+    .alert-time { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--grey); margin-top: 6px; }
+
+    .alerts-info { }
+    .alerts-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px; font-weight: 700; color: white;
+      line-height: 1.3; margin-bottom: 20px;
+    }
+    .alerts-info h3 em { font-style: italic; color: var(--mint); }
+    .alerts-info p { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 32px; }
+    .feature-list { display: flex; flex-direction: column; gap: 14px; }
+    .feature-item { display: flex; align-items: center; gap: 12px; font-size: 15px; color: rgba(255,255,255,0.8); }
+    .f-check {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(77,182,172,0.2); border: 1px solid var(--mint);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 12px;
+    }
+
+    /* ── BRANDING ── */
+    .branding-section { background: var(--white); padding: 100px 5%; }
+    .branding-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: center;
+      margin-top: 60px;
+    }
+    .brand-mockup {
+      background: linear-gradient(135deg, var(--midnight), #0a4a3c);
+      border-radius: 28px; padding: 32px;
+      box-shadow: 0 30px 60px rgba(26,43,60,0.2);
+    }
+    .brand-selector {
+      display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap;
+    }
+    .brand-chip {
+      padding: 8px 16px; border-radius: 100px;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      border: 2px solid; transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .brand-preview-header {
+      background: rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 20px;
+      margin-bottom: 16px;
+    }
+    .brand-logo-placeholder {
+      height: 36px; border-radius: 8px;
+      display: flex; align-items: center;
+      font-size: 14px; font-weight: 700; color: white;
+      padding: 0 16px; margin-bottom: 12px;
+      transition: background 0.4s;
+    }
+    .brand-preview-body {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    }
+    .brand-mini-card {
+      border-radius: 12px; padding: 16px;
+      background: rgba(255,255,255,0.06);
+    }
+    .brand-mini-val {
+      font-family: 'Space Mono', monospace;
+      font-size: 20px; font-weight: 700; color: white;
+    }
+    .brand-mini-lbl { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+    .brand-accent-bar { height: 3px; border-radius: 2px; margin-top: 8px; transition: background 0.4s; }
+
+    .brand-info { }
+    .brand-features { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
+    .brand-feature {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 20px; background: var(--cream); border-radius: 16px;
+      border: 1px solid #ece8e1; transition: all 0.2s;
+    }
+    .brand-feature:hover { border-color: var(--mint); background: #f0faf9; }
+    .bf-icon { font-size: 28px; flex-shrink: 0; }
+    .bf-title { font-size: 15px; font-weight: 700; color: var(--midnight); margin-bottom: 4px; }
+    .bf-desc { font-size: 13px; color: var(--grey); line-height: 1.5; }
+
+    /* ── PRICING ── */
+    .pricing-section {
+      background: var(--cream);
+      padding: 100px 5%;
+    }
+    .pricing-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px; margin-top: 60px; align-items: start;
+    }
+    .price-card {
+      background: white;
+      border-radius: 24px; padding: 36px 28px;
+      border: 2px solid #ece8e1;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      transition: all 0.3s;
+    }
+    .price-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .price-card.featured {
+      background: var(--midnight);
+      border-color: var(--mint);
+      box-shadow: 0 20px 60px rgba(26,43,60,0.3);
+    }
+    .price-popular {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--coral); color: white;
+      border-radius: 100px; padding: 5px 20px;
+      font-size: 12px; font-weight: 700; white-space: nowrap;
+    }
+    .price-tier {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .price-card:not(.featured) .price-tier { color: var(--grey); }
+    .price-card.featured .price-tier { color: var(--mint); }
+    .price-name { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+    .price-card:not(.featured) .price-name { color: var(--midnight); }
+    .price-card.featured .price-name { color: white; }
+    .price-target { font-size: 13px; margin-bottom: 24px; }
+    .price-card:not(.featured) .price-target { color: var(--grey); }
+    .price-card.featured .price-target { color: rgba(255,255,255,0.55); }
+    .price-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px; font-weight: 700; line-height: 1;
+      margin-bottom: 4px;
+    }
+    .price-card:not(.featured) .price-amount { color: var(--midnight); }
+    .price-card.featured .price-amount { color: white; }
+    .price-period { font-size: 13px; margin-bottom: 28px; }
+    .price-card:not(.featured) .price-period { color: var(--grey); }
+    .price-card.featured .price-period { color: rgba(255,255,255,0.5); }
+    .price-divider { height: 1px; margin-bottom: 24px; }
+    .price-card:not(.featured) .price-divider { background: #f0f0f0; }
+    .price-card.featured .price-divider { background: rgba(255,255,255,0.1); }
+    .price-feature {
+      display: flex; gap: 10px; align-items: flex-start;
+      margin-bottom: 12px; font-size: 14px;
+    }
+    .price-card:not(.featured) .price-feature { color: var(--grey); }
+    .price-card.featured .price-feature { color: rgba(255,255,255,0.75); }
+    .pf-check { flex-shrink: 0; margin-top: 1px; }
+    .price-btn {
+      width: 100%; padding: 14px;
+      border-radius: 14px; border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px; font-weight: 700;
+      cursor: pointer; margin-top: 24px;
+      transition: all 0.2s;
+    }
+    .price-card:not(.featured) .price-btn {
+      background: var(--cream); color: var(--midnight);
+      border: 2px solid #ece8e1;
+    }
+    .price-card:not(.featured) .price-btn:hover { border-color: var(--mint); background: var(--mint-lt); }
+    .price-card.featured .price-btn {
+      background: var(--coral); color: white;
+    }
+    .price-card.featured .price-btn:hover { background: #ff8e8e; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,107,107,0.35); }
+
+    /* ── TESTIMONIOS ── */
+    .testimonios { background: white; padding: 100px 5%; }
+    .test-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px; margin-top: 60px;
+    }
+    .test-card {
+      background: var(--cream); border-radius: 20px;
+      padding: 32px 28px; border: 1px solid #ece8e1;
+      transition: all 0.3s;
+    }
+    .test-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); border-color: var(--mint); }
+    .test-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; color: var(--midnight);
+      line-height: 1.6; margin-bottom: 24px;
+      font-style: italic;
+    }
+    .test-quote::before { content: '"'; color: var(--mint); font-size: 48px; line-height: 0; vertical-align: -18px; margin-right: 4px; }
+    .test-author { display: flex; align-items: center; gap: 14px; }
+    .test-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .test-name { font-size: 14px; font-weight: 700; color: var(--midnight); }
+    .test-role { font-size: 12px; color: var(--grey); margin-top: 2px; }
+
+    /* ── CTA FINAL ── */
+    .cta-section {
+      background: var(--night);
+      padding: 120px 5%;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(13,110,110,0.3) 0%, transparent 65%);
+    }
+    .cta-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 900; color: white; line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .cta-section h2 em { font-style: italic; color: var(--mint); }
+    .cta-section p { font-size: 18px; color: rgba(255,255,255,0.6); margin-bottom: 48px; line-height: 1.7; }
+
+    /* ── MODAL DEMO ── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      display: none; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: white; border-radius: 28px;
+      padding: 48px; max-width: 560px; width: 100%;
+      position: relative; animation: popIn 0.35s ease;
+    }
+    @keyframes popIn { from{opacity:0;transform:scale(0.9);} to{opacity:1;transform:scale(1);} }
+    .modal-close {
+      position: absolute; top: 20px; right: 20px;
+      background: #f0f0f0; border: none; border-radius: 50%;
+      width: 36px; height: 36px; cursor: pointer;
+      font-size: 18px; display: flex; align-items: center; justify-content: center;
+    }
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-weight: 700;
+      color: var(--midnight); margin-bottom: 8px;
+    }
+    .modal-sub { font-size: 15px; color: var(--grey); margin-bottom: 32px; }
+    .form-group { margin-bottom: 18px; }
+    .form-label { font-size: 13px; font-weight: 600; color: var(--midnight); margin-bottom: 6px; display: block; }
+    .form-input {
+      width: 100%; padding: 12px 16px;
+      border: 1.5px solid #e0e0e0; border-radius: 12px;
+      font-family: 'DM Sans', sans-serif; font-size: 15px;
+      color: var(--midnight); outline: none; transition: border-color 0.2s;
+    }
+    .form-input:focus { border-color: var(--mint); }
+    .form-select {
+      width: 100%; padding: 12px 16px;
+      border: 1.5px solid #e0e0e0; border-radius: 12px;
+      font-family: 'DM Sans', sans-serif; font-size: 15px;
+      color: var(--midnight); outline: none; background: white;
+      transition: border-color 0.2s; cursor: pointer;
+    }
+    .form-select:focus { border-color: var(--mint); }
+    .form-submit {
+      width: 100%; padding: 16px;
+      background: var(--midnight); color: white;
+      border: none; border-radius: 14px;
+      font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700;
+      cursor: pointer; margin-top: 8px; transition: all 0.2s;
+    }
+    .form-submit:hover { background: #0a4a3c; transform: translateY(-2px); }
+    .form-privacy { font-size: 12px; color: var(--grey); text-align: center; margin-top: 12px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #070f18;
+      padding: 48px 5% 32px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px; letter-spacing: 3px;
+      color: var(--mint); margin-bottom: 16px;
+    }
+    .footer-sub { font-size: 13px; color: rgba(255,255,255,0.3); margin-bottom: 24px; }
+    .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--mint); }
+    .footer-bottom { font-size: 12px; color: rgba(255,255,255,0.2); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .problem-grid, .solution-grid, .pricing-grid, .test-grid { grid-template-columns: 1fr; }
+      .dash-kpis { grid-template-columns: 1fr 1fr; }
+      .dash-charts { grid-template-columns: 1fr; }
+      .alerts-grid, .branding-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-logo">TODO ESTÁ BIEN ✦</div>
+  <div class="nav-links">
+    <a href="#problema">El Problema</a>
+    <a href="#solucion">Solución</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#precios">Precios</a>
+    <a href="#" class="nav-cta" onclick="openModal()">Solicitar Demo</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-badge"><div class="hero-badge-dot"></div> Plataforma B2B para Instituciones de Salud · LATAM</div>
+  <h1>El burnout de tu personal<br>cuesta más de lo que <em>crees</em></h1>
+  <p class="hero-sub">TODO ESTÁ BIEN es la plataforma de bienestar mental diseñada específicamente para hospitales, clínicas y EPS. Detecta el agotamiento antes de que afecte la atención al paciente.</p>
+  <div class="hero-btns">
+    <a href="#" class="btn-primary" onclick="openModal()">📋 Solicitar Demo Gratis</a>
+    <a href="#dashboard" class="btn-secondary">Ver el Dashboard →</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-val">76<span>%</span></div>
+      <div class="hero-stat-lbl">del personal sanitario en LATAM<br>reporta burnout activo</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-val">3<span>x</span></div>
+      <div class="hero-stat-lbl">más costoso reemplazar<br>un profesional de salud</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-val">-40<span>%</span></div>
+      <div class="hero-stat-lbl">reducción de ausentismo<br>con intervención temprana</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROBLEMA ═══ -->
+<section class="problem" id="problema">
+  <span class="section-tag">El Problema</span>
+  <h2 class="section-title">Lo que el burnout<br>le cuesta a tu institución</h2>
+  <p class="section-sub">Los datos en América Latina son alarmantes. Y la mayoría de las instituciones no lo están midiendo.</p>
+  <div class="problem-grid">
+    <div class="problem-item">
+      <div class="prob-num">01 — ROTACIÓN</div>
+      <div class="prob-stat">$28<span>K</span></div>
+      <div class="prob-desc">Costo promedio de reemplazar un profesional de salud entre reclutamiento, formación y pérdida de productividad durante la transición.</div>
+    </div>
+    <div class="problem-item">
+      <div class="prob-num">02 — AUSENTISMO</div>
+      <div class="prob-stat">18<span> días</span></div>
+      <div class="prob-desc">Días de incapacidad anuales promedio en personal sanitario con burnout no detectado. El doble que en otras profesiones.</div>
+    </div>
+    <div class="problem-item">
+      <div class="prob-num">03 — ERRORES MÉDICOS</div>
+      <div class="prob-stat">2.3<span>x</span></div>
+      <div class="prob-desc">Mayor probabilidad de errores clínicos cuando el profesional trabaja bajo agotamiento extremo no tratado. Riesgo directo al paciente.</div>
+    </div>
+    <div class="problem-item">
+      <div class="prob-num">04 — INVISIBILIDAD</div>
+      <div class="prob-stat">89<span>%</span></div>
+      <div class="prob-desc">De las instituciones no tiene un sistema de detección temprana de burnout. El problema crece en silencio hasta que es tarde.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOLUCIÓN ═══ -->
+<section class="solution" id="solucion">
+  <div class="solution-inner">
+    <span class="section-tag" style="color:var(--mint)">La Solución</span>
+    <h2 class="section-title" style="color:white">Una plataforma completa.<br>Resultados <em style="font-style:italic;color:var(--mint)">medibles</em>.</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,0.55)">Diseñada por una médica para el contexto real del personal sanitario latinoamericano.</p>
+    <div class="solution-grid">
+      <div class="sol-card">
+        <span class="sol-icon">🎯</span>
+        <div class="sol-title">Test de Bienestar Validado</div>
+        <div class="sol-desc">Evaluaciones semanales de estrés, ansiedad y burnout con metodología clínica. Los datos llegan en tiempo real a RRHH.</div>
+      </div>
+      <div class="sol-card">
+        <span class="sol-icon">🤖</span>
+        <div class="sol-title">Entrenador Mental con IA</div>
+        <div class="sol-desc">Chat de terapia cognitivo-conductual disponible 24/7. El personal tiene apoyo inmediato entre turnos, sin estigma.</div>
+      </div>
+      <div class="sol-card">
+        <span class="sol-icon">🔔</span>
+        <div class="sol-title">Alertas Tempranas</div>
+        <div class="sol-desc">Sistema automático que detecta patrones de riesgo por área, servicio o turno. Intervén antes de que sea una crisis.</div>
+      </div>
+      <div class="sol-card">
+        <span class="sol-icon">📊</span>
+        <div class="sol-title">Dashboard Gerencial</div>
+        <div class="sol-desc">Panel de RRHH con métricas de bienestar por área, reportes descargables y ROI calculado en tiempo real.</div>
+      </div>
+      <div class="sol-card">
+        <span class="sol-icon">🏥</span>
+        <div class="sol-title">Branding Institucional</div>
+        <div class="sol-desc">La app lleva el logo y colores de tu institución. El personal la vive como un beneficio propio de su hospital.</div>
+      </div>
+      <div class="sol-card">
+        <span class="sol-icon">🔒</span>
+        <div class="sol-title">Privacidad Garantizada</div>
+        <div class="sol-desc">RRHH ve datos agregados, nunca individuales. Cumplimiento LGPD, Ley 1581 Colombia y normativas locales de salud.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DASHBOARD ═══ -->
+<section class="dashboard-section" id="dashboard">
+  <span class="section-tag">Panel de Control</span>
+  <h2 class="section-title">Tu equipo en tiempo real.<br>Decisiones basadas en datos.</h2>
+  <p class="section-sub">El Director de RRHH ve todo lo que necesita para actuar. Sin tecnicismos, sin datos confusos.</p>
+
+  <div class="dash-preview">
+    <div class="dash-topbar">
+      <div>
+        <div class="dash-title">Panel de Bienestar Institucional</div>
+        <div class="dash-subtitle">Hospital Universitario · 847 colaboradores activos</div>
+      </div>
+      <div class="dash-date">Feb 2026 · Semana 8</div>
+    </div>
+    <div class="dash-kpis">
+      <div class="kpi-card">
+        <div class="kpi-label">Índice Bienestar</div>
+        <div class="kpi-val">72%</div>
+        <div class="kpi-change kpi-up">↑ +8% vs mes anterior</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">En Riesgo Alto</div>
+        <div class="kpi-val" style="color:#FF6B6B">23</div>
+        <div class="kpi-change kpi-down">↑ requieren atención</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Sesiones este mes</div>
+        <div class="kpi-val">1,284</div>
+        <div class="kpi-change kpi-up">↑ +22% adopción</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Ausentismo evitado</div>
+        <div class="kpi-val" style="color:#4db6ac">-31%</div>
+        <div class="kpi-change kpi-up">vs. línea base</div>
+      </div>
+    </div>
+    <div class="dash-charts">
+      <div class="chart-card">
+        <div class="chart-title">Nivel de Estrés por Área · Últimas 8 semanas</div>
+        <div class="bar-chart">
+          ${[
+            {h:55,c:'#4db6ac',l:'UCI'},
+            {h:80,c:'#FF6B6B',l:'Urgencias'},
+            {h:45,c:'#4db6ac',l:'Pediatría'},
+            {h:65,c:'#F5C842',l:'Cirugía'},
+            {h:35,c:'#4db6ac',l:'Consulta'},
+            {h:70,c:'#FF6B6B',l:'Oncología'},
+          ].map(b=>`<div class="bar-wrap"><div class="bar" style="height:${b.h}%;background:${b.c};opacity:0.85"></div><div class="bar-lbl">${b.l}</div></div>`).join('')}
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">⚠ Alertas Activas</div>
+        <div class="risk-list">
+          <div class="risk-item"><div class="risk-dot" style="background:#FF6B6B"></div><span class="risk-name">Urgencias — Turno Noche</span><span class="risk-badge risk-alto">ALTO</span></div>
+          <div class="risk-item"><div class="risk-dot" style="background:#FF6B6B"></div><span class="risk-name">Oncología — Equipo A</span><span class="risk-badge risk-alto">ALTO</span></div>
+          <div class="risk-item"><div class="risk-dot" style="background:#F5C842"></div><span class="risk-name">Cirugía — Residentes</span><span class="risk-badge risk-medio">MEDIO</span></div>
+          <div class="risk-item"><div class="risk-dot" style="background:#4db6ac"></div><span class="risk-name">Pediatría — General</span><span class="risk-badge risk-bajo">BAJO</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ALERTAS ═══ -->
+<section class="alerts-section" id="alertas">
+  <div class="alerts-grid">
+    <div>
+      <span class="section-tag">Sistema de Alertas</span>
+      <h2 class="section-title" style="color:white">Detecta el burnout<br>antes de que llegue<br>a la sala de urgencias</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.5);margin-top:16px">Las alertas llegan directamente a RRHH con el área y nivel de riesgo. Sin violar la privacidad individual.</p>
+    </div>
+    <div class="alert-list">
+      <div class="alert-card rojo">
+        <div class="alert-icon">🚨</div>
+        <div>
+          <div class="alert-title">Riesgo Alto Detectado · UCI</div>
+          <div class="alert-desc">4 profesionales del turno de noche presentan puntuaciones de burnout severo por 3 semanas consecutivas. Se recomienda intervención inmediata.</div>
+          <div class="alert-time">Hace 2 horas · Acción requerida</div>
+        </div>
+      </div>
+      <div class="alert-card amarillo">
+        <div class="alert-icon">⚠️</div>
+        <div>
+          <div class="alert-title">Tendencia Negativa · Cirugía</div>
+          <div class="alert-desc">El índice de ansiedad del área de residentes subió 18 puntos en las últimas 2 semanas. Monitoreo activo activado.</div>
+          <div class="alert-time">Hace 1 día · En seguimiento</div>
+        </div>
+      </div>
+      <div class="alert-card verde">
+        <div class="alert-icon">✅</div>
+        <div>
+          <div class="alert-title">Mejora Sostenida · Pediatría</div>
+          <div class="alert-desc">Después de la intervención del mes pasado, el bienestar del área subió 24 puntos. El equipo está en zona verde.</div>
+          <div class="alert-time">Actualizado hoy · Sin acción requerida</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BRANDING ═══ -->
+<section class="branding-section">
+  <div class="branding-grid">
+    <div class="brand-mockup">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:rgba(77,182,172,0.7);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px">VISTA PREVIA — Tu marca</div>
+      <div class="brand-selector" id="brand-selector">
+        <button class="brand-chip active" style="background:#1A2B3C;color:white;border-color:#4db6ac" onclick="setBrand(this,'#1A2B3C','#4db6ac','Hospital San Rafael')">San Rafael</button>
+        <button class="brand-chip" style="background:transparent;color:#e91e63;border-color:#e91e63" onclick="setBrand(this,'#880e4f','#e91e63','Clínica Las Américas')">Las Américas</button>
+        <button class="brand-chip" style="background:transparent;color:#1565c0;border-color:#1565c0" onclick="setBrand(this,'#0d47a1','#42a5f5','EPS Sanitas')">Sanitas</button>
+      </div>
+      <div class="brand-preview-header">
+        <div class="brand-logo-placeholder" id="brand-logo" style="background:#1A2B3C">🏥 Hospital San Rafael · TODO ESTÁ BIEN</div>
+        <div class="brand-preview-body">
+          <div class="brand-mini-card">
+            <div class="brand-mini-val">847</div>
+            <div class="brand-mini-lbl">Colaboradores activos</div>
+            <div class="brand-accent-bar" id="brand-bar" style="background:#4db6ac;width:70%"></div>
+          </div>
+          <div class="brand-mini-card">
+            <div class="brand-mini-val" style="color:#4db6ac" id="brand-score">72%</div>
+            <div class="brand-mini-lbl">Índice de bienestar</div>
+            <div class="brand-accent-bar" id="brand-bar2" style="background:#4db6ac;width:72%"></div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.4);text-align:center;margin-top:8px">Tu logo · Tus colores · Tu marca</div>
+    </div>
+    <div class="brand-info">
+      <span class="section-tag">White Label</span>
+      <h2 class="section-title">La app con la<br>cara de tu institución</h2>
+      <p style="font-size:16px;color:var(--grey);line-height:1.7;margin-bottom:8px">El personal no usa "una app externa". Usa <strong>el programa de bienestar de su hospital</strong>. Eso cambia la adopción radicalmente.</p>
+      <div class="brand-features">
+        <div class="brand-feature">
+          <div class="bf-icon">🎨</div>
+          <div><div class="bf-title">Colores y logo institucional</div><div class="bf-desc">La paleta completa de tu institución aplicada en toda la app.</div></div>
+        </div>
+        <div class="brand-feature">
+          <div class="bf-icon">📱</div>
+          <div><div class="bf-title">URL personalizada</div><div class="bf-desc">bienestar.tuhospital.com — no una app genérica de terceros.</div></div>
+        </div>
+        <div class="brand-feature">
+          <div class="bf-icon">📋</div>
+          <div><div class="bf-title">Reportes con tu membrete</div><div class="bf-desc">Los PDFs para gerencia llevan el logo institucional y los datos de tu equipo.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRECIOS ═══ -->
+<section class="pricing-section" id="precios">
+  <span class="section-tag">Planes Institucionales</span>
+  <h2 class="section-title">Una inversión que se<br>paga sola en 90 días</h2>
+  <p class="section-sub">Compara el costo del plan con el costo de una sola incapacidad por burnout. La math es simple.</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-tier">Starter</div>
+      <div class="price-name">Clínica Pequeña</div>
+      <div class="price-target">Hasta 100 colaboradores</div>
+      <div class="price-amount">$299</div>
+      <div class="price-period">USD / mes · facturación anual</div>
+      <div class="price-divider"></div>
+      <div class="price-feature"><span class="pf-check">✓</span> App para hasta 100 usuarios</div>
+      <div class="price-feature"><span class="pf-check">✓</span> Dashboard básico de RRHH</div>
+      <div class="price-feature"><span class="pf-check">✓</span> Test semanal de bienestar</div>
+      <div class="price-feature"><span class="pf-check">✓</span> Chat IA para el personal</div>
+      <div class="price-feature"><span class="pf-check">✓</span> Reportes mensuales PDF</div>
+      <div class="price-feature" style="opacity:0.4"><span class="pf-check">–</span> Alertas automáticas</div>
+      <div class="price-feature" style="opacity:0.4"><span class="pf-check">–</span> Branding institucional</div>
+      <button class="price-btn" onclick="openModal()">Solicitar Demo</button>
+    </div>
+    <div class="price-card featured">
+      <div class="price-popular">⭐ Más Contratado</div>
+      <div class="price-tier">Professional</div>
+      <div class="price-name">Hospital Mediano</div>
+      <div class="price-target">Hasta 500 colaboradores</div>
+      <div class="price-amount">$899</div>
+      <div class="price-period">USD / mes · facturación anual</div>
+      <div class="price-divider"></div>
+      <div class="price-feature"><span class="pf-check">✓</span> Usuarios ilimitados hasta 500</div>
+      <div class="price-feature"><span class="pf-check">✓</span> Dashboard gerencial completo</div>
+      <div class="price-feature"><span class="pf-check">✓</span> Alertas automáticas de riesgo</div>
+      <div class="price-feature"><span class="pf-check">✓</span> Branding institucional completo</div>
+      <div class="price-feature"><span class="pf-check">✓</span> Directorio de psicólogos</div>
+      <div class="price-feature"><span class="pf-check">✓</span> Reportes semanales + PDF</div>
+      <div class="price-feature"><span class="pf-check">✓</span> Onboarding + capacitación</div>
+      <button class="price-btn" onclick="openModal()">Solicitar Demo Gratis</button>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Enterprise</div>
+      <div class="price-name">EPS / Red Hospitalaria</div>
+      <div class="price-target">Colaboradores ilimitados</div>
+      <div class="price-amount">A medida</div>
+      <div class="price-period">Cotización personalizada</div>
+      <div class="price-divider"></div>
+      <div class="price-feature"><span class="pf-check">✓</span> Usuarios ilimitados</div>
+      <div class="price-feature"><span class="pf-check">✓</span> Multi-sede y multi-área</div>
+      <div class="price-feature"><span class="pf-check">✓</span> Integraciones con RR.HH. existente</div>
+      <div class="price-feature"><span class="pf-check">✓</span> SLA garantizado 99.9%</div>
+      <div class="price-feature"><span class="pf-check">✓</span> Gerente de cuenta dedicado</div>
+      <div class="price-feature"><span class="pf-check">✓</span> Capacitación presencial</div>
+      <div class="price-feature"><span class="pf-check">✓</span> Contrato con condiciones especiales</div>
+      <button class="price-btn" onclick="openModal()">Hablar con Ventas</button>
+    </div>
+  </div>
+  <p style="text-align:center;margin-top:32px;font-size:14px;color:var(--grey)">💳 Aceptamos pago en USD, COP, MXN y BRL · Factura electrónica disponible</p>
+</section>
+
+<!-- ═══ TESTIMONIOS ═══ -->
+<section class="testimonios">
+  <span class="section-tag">Lo dicen quienes lo vivieron</span>
+  <h2 class="section-title">Instituciones que ya<br>priorizan a su equipo</h2>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-quote">En 3 meses el ausentismo por incapacidades relacionadas con estrés bajó un 34%. Los números hablan solos.</div>
+      <div class="test-author">
+        <div class="test-avatar" style="background:#E0F2F1">👩‍⚕️</div>
+        <div>
+          <div class="test-name">Dra. María Claudia Herrera</div>
+          <div class="test-role">Directora RRHH · Hospital Universitario de Medellín</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-quote">Por primera vez tenemos datos reales del bienestar de nuestro personal. Antes lo intuíamos, ahora lo medimos.</div>
+      <div class="test-author">
+        <div class="test-avatar" style="background:#EDE7F6">🧑‍💼</div>
+        <div>
+          <div class="test-name">Dr. Andrés Castellanos</div>
+          <div class="test-role">Gerente Médico · Clínica Palermo, Bogotá</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-quote">Nuestras enfermeras usan el chat de IA entre turnos. Dicen que es lo más útil que les hemos dado en años.</div>
+      <div class="test-author">
+        <div class="test-avatar" style="background:#FFF3E0">👩‍💼</div>
+        <div>
+          <div class="test-name">Lic. Patricia Soto</div>
+          <div class="test-role">Jefa de Enfermería · IMSS, Guadalajara</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>Tu equipo lo da todo.<br>Ya es hora de <em>devolvérselo</em>.</h2>
+    <p>Agenda una demo de 30 minutos. Sin compromisos. Te mostramos el dashboard con los datos de una institución real y respondemos todas tus preguntas.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary" onclick="openModal()">📋 Agendar Demo Gratuita</a>
+      <a href="mailto:hola@todoestabien.co" class="btn-secondary">✉ Escribirnos directamente</a>
+    </div>
+    <p style="margin-top:32px;font-size:13px;color:rgba(255,255,255,0.3)">Sin tarjeta de crédito · Respuesta en menos de 24 horas · Demo en español</p>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-logo">TODO ESTÁ BIEN ✦ LATAM</div>
+  <div class="footer-sub">Plataforma de bienestar mental para instituciones de salud · Diseñada por médicos para médicos</div>
+  <div class="footer-links">
+    <a href="#">Inicio</a>
+    <a href="#">Solución</a>
+    <a href="#">Precios</a>
+    <a href="#">Privacidad</a>
+    <a href="#">Términos</a>
+    <a href="#">Contacto</a>
+  </div>
+  <div class="footer-bottom">© 2026 TODO ESTÁ BIEN · Colombia · México · Brasil · Argentina · Todos los derechos reservados</div>
+</footer>
+
+<!-- ═══ MODAL DEMO ═══ -->
+<div class="modal-overlay" id="modal-demo">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title">Solicitar Demo Gratuita</div>
+    <div class="modal-sub">Te contactamos en menos de 24 horas para agendar una demo personalizada de 30 minutos.</div>
+    <div class="form-group">
+      <label class="form-label">Nombre completo</label>
+      <input class="form-input" placeholder="Dra. María Claudia Herrera" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Institución</label>
+      <input class="form-input" placeholder="Hospital San Rafael / Clínica Las Américas / EPS..." />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Cargo</label>
+      <select class="form-select">
+        <option>Director/a de RRHH</option>
+        <option>Gerente Médico/a</option>
+        <option>Director/a General</option>
+        <option>Jefe/a de Bienestar</option>
+        <option>Otro</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Número de colaboradores</label>
+      <select class="form-select">
+        <option>Menos de 100</option>
+        <option>100 – 500</option>
+        <option>500 – 2.000</option>
+        <option>Más de 2.000</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">WhatsApp o correo</label>
+      <input class="form-input" placeholder="+57 300 123 4567 / tu@hospital.com" />
+    </div>
+    <button class="form-submit" onclick="submitDemo()">Solicitar mi Demo Gratis →</button>
+    <p class="form-privacy">🔒 Tu información es confidencial y nunca será compartida con terceros.</p>
+  </div>
+</div>
+
+<script>
+  // ── Modal ──
+  function openModal() { document.getElementById('modal-demo').classList.add('open'); }
+  function closeModal() { document.getElementById('modal-demo').classList.remove('open'); }
+  document.getElementById('modal-demo').addEventListener('click', e => { if(e.target===e.currentTarget) closeModal(); });
+  function submitDemo() {
+    alert('✅ ¡Solicitud enviada!\n\nNos pondremos en contacto contigo en menos de 24 horas para agendar tu demo personalizada.\n\n¡Gracias por confiar en TODO ESTÁ BIEN! 💙');
+    closeModal();
+  }
+
+  // ── Branding interactivo ──
+  function setBrand(btn, bgColor, accentColor, name) {
+    document.querySelectorAll('.brand-chip').forEach(c => {
+      c.style.background = 'transparent';
+      c.classList.remove('active');
+    });
+    btn.style.background = bgColor;
+    btn.style.color = 'white';
+    btn.style.borderColor = accentColor;
+    document.getElementById('brand-logo').style.background = bgColor;
+    document.getElementById('brand-logo').textContent = '🏥 ' + name + ' · TODO ESTÁ BIEN';
+    document.getElementById('brand-bar').style.background = accentColor;
+    document.getElementById('brand-bar2').style.background = accentColor;
+    document.getElementById('brand-score').style.color = accentColor;
+  }
+
+  // ── Scroll suave nav ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    if(a.getAttribute('href') !== '#') {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target) { e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); }
+      });
+    }
+  });
+</script>
+</body>
+</html>
